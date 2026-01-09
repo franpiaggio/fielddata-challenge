@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import type { ReactNode } from 'react';
-import type { TabType } from '../types/ui.types';
+import { TabType } from '../types/ui.types';
 
 interface UIContextValue {
   activeTab: TabType;
@@ -10,7 +10,7 @@ interface UIContextValue {
 export const UIContext = createContext<UIContextValue | undefined>(undefined);
 
 export function UIProvider({ children }: { children: ReactNode }) {
-  const [activeTab, setActiveTab] = useState<TabType>('todas');
+  const [activeTab, setActiveTab] = useState<TabType>(TabType.ALL);
 
   return (
     <UIContext.Provider value={{ activeTab, setActiveTab }}>

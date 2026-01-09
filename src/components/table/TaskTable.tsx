@@ -4,31 +4,28 @@ import { TableRow } from './TableRow';
 import { TablePagination } from './TablePagination';
 
 interface TaskTableProps {
-  variant: 'pending' | 'completed';
   tasks: Task[];
+  totalCount: number;
   expandedRow: number | null;
   onExpandToggle: (taskId: number) => void;
   onTaskToggle: (taskId: number) => void;
-  pagination?: {
-    onPrevious: () => void;
-    onNext: () => void;
-    hasPrevious: boolean;
-    hasNext: boolean;
-  };
+  onLoadMore?: () => void;
+  hasMore?: boolean;
 }
 
 export function TaskTable({
-  variant,
   tasks,
+  totalCount,
   expandedRow,
   onExpandToggle,
   onTaskToggle,
-  pagination
+  onLoadMore,
+  hasMore = false
 }: TaskTableProps) {
   return (
     <div className="flex justify-center w-full">
       <div className="bg-white rounded-lg shadow-md w-full max-w-[1159px] overflow-x-auto">
-        <TableHeader variant={variant} count={tasks.length} />
+        <TableHeader count={totalCount} />
         {tasks.map((task) => (
           <TableRow
             key={task.id}
@@ -45,12 +42,10 @@ export function TaskTable({
             details={task.details}
           />
         ))}
-        {pagination && (
+        {onLoadMore && (
           <TablePagination
-            onPrevious={pagination.onPrevious}
-            onNext={pagination.onNext}
-            hasPrevious={pagination.hasPrevious}
-            hasNext={pagination.hasNext}
+            onLoadMore={onLoadMore}
+            hasMore={hasMore}
           />
         )}
       </div>

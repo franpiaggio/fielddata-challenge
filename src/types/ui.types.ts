@@ -1,4 +1,7 @@
-export type TabType = 'todas' | 'mis';
+export enum TabType {
+  ALL = 'all',
+  USER = 'user'
+}
 
 export interface TableHeaderConfig {
   label: string;

@@ -14,7 +14,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
     textColor: string;
   };
 }> = {
-  Estructura2: {
+  Estructura: {
     translationKey: 'taskTypes.structure',
     icon: structureIcon,
     colors: {
@@ -41,7 +41,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
       textColor: '#8a38f5',
     },
   },
-  Ganaderia: {
+  Ganadería: {
     translationKey: 'taskTypes.livestock',
     icon: livestockIcon,
     colors: {
@@ -50,7 +50,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
       textColor: '#7f4400',
     },
   },
-  FINANZAS: {
+  Finanzas: {
     translationKey: 'taskTypes.finance',
     icon: financeIcon,
     colors: {

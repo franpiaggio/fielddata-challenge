@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Tab } from './Tab';
 import { useUIContext } from '../../hooks/useUIContext';
-import { IMAGES } from '../../constants/images.constants';
+import { TabType } from '../../types/ui.types';
 
 export function TabBar() {
   const { t } = useTranslation();
@@ -10,15 +10,14 @@ export function TabBar() {
   return (
     <div className="bg-white rounded-lg px-4 sm:px-5 py-3 flex gap-6 items-stretch overflow-x-auto">
       <Tab
-        active={activeTab === 'todas'}
-        onClick={() => setActiveTab('todas')}
-        icon={IMAGES.tabs.allTasks}
+        active={activeTab === TabType.ALL}
+        onClick={() => setActiveTab(TabType.ALL)}
       >
         {t('tasks.allTasks')}
       </Tab>
       <Tab
-        active={activeTab === 'mis'}
-        onClick={() => setActiveTab('mis')}
+        active={activeTab === TabType.USER}
+        onClick={() => setActiveTab(TabType.USER)}
       >
         {t('tasks.myTasks')}
       </Tab>

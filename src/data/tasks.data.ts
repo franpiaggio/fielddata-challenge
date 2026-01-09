@@ -4,7 +4,7 @@ import { COLORS } from '../constants/colors.constants';
 export const INITIAL_PENDING_TASKS: Task[] = [
   {
     id: 1,
-    type: "Estructura2",
+    type: "Estructura",
     task: "Arreglar el alambre entre la Tapera y La Taba",
     date: "Hoy",
     responsible: "Martin Perez",
@@ -99,7 +99,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
   },
   {
     id: 5,
-    type: "FINANZAS",
+    type: "Finanzas",
     task: "Pagar segunda cuota a Agro365",
     date: "1 de Dic",
     responsible: "Lucia del Rio",
@@ -115,7 +115,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
   },
   {
     id: 6,
-    type: "Ganaderia",
+    type: "Ganadería",
     task: "Mover novillos de la Victoria a el Triunfo",
     date: "3 de Dic",
     responsible: "Martin Perez",
@@ -159,7 +159,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 8,
-    type: "Ganaderia",
+    type: "Ganadería",
     task: "Mover los toros de el Intruso a el Ajeno",
     date: "14 de Nov",
     responsible: "Angela Paez",
@@ -176,7 +176,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 9,
-    type: "Ganaderia",
+    type: "Ganadería",
     task: "Venta de 200 novillos del feedlot",
     date: "2 de Nov",
     responsible: "Martin Perez",
@@ -220,7 +220,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 11,
-    type: "FINANZAS",
+    type: "Finanzas",
     task: "Pagar primera cuota a Agro365",
     date: "18 de Oct",
     responsible: "Lucia del Rio",
@@ -236,7 +236,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 12,
-    type: "Estructura2",
+    type: "Estructura",
     task: "Arreglar el molino roto en los corrales",
     date: "13 de Oct",
     responsible: "Martin Perez",

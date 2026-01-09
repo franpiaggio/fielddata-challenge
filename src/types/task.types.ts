@@ -1,4 +1,4 @@
-export type TaskType = "Estructura2" | "Sanidad" | "Agricultura" | "Ganaderia" | "FINANZAS";
+export type TaskType = "Estructura" | "Sanidad" | "Agricultura" | "Ganadería" | "Finanzas";
 
 export type TaskStatus = 'pending' | 'completed';
 

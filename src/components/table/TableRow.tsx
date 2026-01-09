@@ -24,9 +24,18 @@ interface TableRowProps {
   details?: AgricultureDetails | SanidadDetails | GenericDetails;
 }
 
+function StatusIndicator({ completed }: { completed: boolean }) {
+  return (
+    <div
+      className={`w-3 h-3 rounded-full ${completed ? 'bg-green-500' : 'bg-amber-400'}`}
+      title={completed ? 'Completada' : 'Pendiente'}
+    />
+  );
+}
+
 export function TableRow({
   checked = false,
-  type = "Estructura2",
+  type = "Estructura",
   task,
   date,
   responsible,
@@ -55,26 +64,32 @@ export function TableRow({
   return (
     <>
       <div
-        className={`flex gap-4 items-center min-h-16 pl-4 sm:pl-5 pr-2.5 border-b border-gray-100 transition-colors relative ${
-          isExpanded ? 'bg-[#f8f9fa]' : 'bg-white'
+        className={`flex items-center min-h-14 pl-4 sm:pl-5 pr-2.5 border-b border-gray-100 transition-colors relative ${
+          isExpanded ? 'bg-[#f8f9fa]' : 'bg-white hover:bg-gray-50'
         }`}
         onClick={handleRowClick}
         style={{ cursor: taskId !== undefined ? 'pointer' : 'default' }}
       >
         {isExpanded && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0095FF]" />}
-        <div className="flex items-center gap-3">
-          <div onClick={(e) => e.stopPropagation()}>
-            <Checkbox checked={checked} onChange={onCheckChange} />
-          </div>
+
+        <div className="w-8 flex-shrink-0 flex items-center" onClick={(e) => e.stopPropagation()}>
+          <Checkbox checked={checked} onChange={onCheckChange} />
+        </div>
+
+        <div className="w-28 flex-shrink-0">
           <TaskTypeBadge type={type} />
         </div>
 
-        <div className="flex-1 min-w-0 max-w-[200px] sm:max-w-none">
+        <div className="flex-1 min-w-0 pl-8">
           <TextCell variant="primary" className="truncate">{task}</TextCell>
         </div>
 
-        <div className="hidden sm:flex w-32 items-center gap-1.5">
-          <img src={IMAGES.icons.calendar} alt="calendar" className="w-6 h-6" />
+        <div className="hidden sm:flex w-20 items-center justify-center">
+          <StatusIndicator completed={checked} />
+        </div>
+
+        <div className="hidden sm:flex w-28 items-center gap-1.5">
+          <img src={IMAGES.icons.calendar} alt="calendar" className="w-5 h-5" />
           <p className="font-normal text-sm leading-5" style={{ color: dateColor }}>
             {date}
           </p>
@@ -84,7 +99,7 @@ export function TableRow({
           <TextCell variant="secondary">{responsible}</TextCell>
         </div>
 
-        <div className="w-6 flex items-center gap-2">
+        <div className="w-6 flex-shrink-0 flex items-center justify-center">
           {taskId !== undefined && (
             <svg
               width="16"
@@ -112,7 +127,7 @@ export function TableRow({
             <ExpandedAgricultureRow details={details as AgricultureDetails} task={task} />
           ) : type === 'Sanidad' && details ? (
             <ExpandedSanidadRow details={details as SanidadDetails} task={task} />
-          ) : (type === 'Estructura2' || type === 'Ganaderia' || type === 'FINANZAS') && details ? (
+          ) : (type === 'Estructura' || type === 'Ganadería' || type === 'Finanzas') && details ? (
             <ExpandedGenericRow details={details as GenericDetails} task={task} />
           ) : (
             <ExpandedRowDetails
