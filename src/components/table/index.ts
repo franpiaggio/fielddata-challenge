@@ -4,4 +4,5 @@ export { TableRow } from './TableRow';
 export { TableBadge } from './TableBadge';
 export { TablePagination } from './TablePagination';
 export { ExpandedRowDetails } from './ExpandedRowDetails';
+export { ExpandedRowContent } from './ExpandedRowContent';
 export { TaskTable } from './TaskTable';

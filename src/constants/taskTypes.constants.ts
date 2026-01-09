@@ -14,7 +14,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
     textColor: string;
   };
 }> = {
-  Estructura2: {
+  estructura: {
     translationKey: 'taskTypes.structure',
     icon: structureIcon,
     colors: {
@@ -23,7 +23,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
       textColor: '#0095ff',
     },
   },
-  Agricultura: {
+  agricultura: {
     translationKey: 'taskTypes.agriculture',
     icon: agricultureIcon,
     colors: {
@@ -32,7 +32,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
       textColor: '#00802a',
     },
   },
-  Sanidad: {
+  sanidad: {
     translationKey: 'taskTypes.health',
     icon: healthIcon,
     colors: {
@@ -41,7 +41,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
       textColor: '#8a38f5',
     },
   },
-  Ganaderia: {
+  ganaderia: {
     translationKey: 'taskTypes.livestock',
     icon: livestockIcon,
     colors: {
@@ -50,7 +50,7 @@ export const TASK_TYPE_CONFIG: Record<TaskType, {
       textColor: '#7f4400',
     },
   },
-  FINANZAS: {
+  finanzas: {
     translationKey: 'taskTypes.finance',
     icon: financeIcon,
     colors: {

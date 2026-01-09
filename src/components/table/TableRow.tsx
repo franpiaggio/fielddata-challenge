@@ -1,14 +1,11 @@
 import type { TaskType, AgricultureDetails, SanidadDetails, GenericDetails } from '../../types/task.types';
 import { IMAGES } from '../../constants/images.constants';
 import { COLORS } from '../../constants/colors.constants';
-import { THEME } from '../../constants/theme.constants';
 import { Checkbox } from '../form/Checkbox';
 import { TaskTypeBadge } from '../badge/TaskTypeBadge';
 import { TextCell } from '../common';
-import { ExpandedRowDetails } from './ExpandedRowDetails';
-import { ExpandedAgricultureRow } from './ExpandedAgricultureRow';
-import { ExpandedSanidadRow } from './ExpandedSanidadRow';
-import { ExpandedGenericRow } from './ExpandedGenericRow';
+import { ChevronIcon } from '../icons';
+import { ExpandedRowContent } from './ExpandedRowContent';
 
 interface TableRowProps {
   checked?: boolean;
@@ -26,7 +23,7 @@ interface TableRowProps {
 
 export function TableRow({
   checked = false,
-  type = "Estructura2",
+  type = "estructura",
   task,
   date,
   responsible,
@@ -62,7 +59,7 @@ export function TableRow({
         style={{ cursor: taskId !== undefined ? 'pointer' : 'default' }}
       >
         {isExpanded && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0095FF]" />}
-        <div className="w-[200px] flex-shrink-0 flex items-center gap-3">
+        <div className="w-auto sm:w-[200px] flex-shrink-0 flex items-center gap-3">
           <div onClick={(e) => e.stopPropagation()}>
             <Checkbox checked={checked} onChange={onCheckChange} />
           </div>
@@ -86,45 +83,24 @@ export function TableRow({
 
         <div className="w-6 flex items-center gap-2">
           {taskId !== undefined && (
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-            >
-              <path
-                d="M4 6L8 10L12 6"
-                stroke={THEME.colors.text.secondary}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ChevronIcon
+              direction={isExpanded ? 'up' : 'down'}
+              className="transition-transform"
+            />
           )}
         </div>
       </div>
 
       {isExpanded && (
-        <>
-          {type === 'Agricultura' && details ? (
-            <ExpandedAgricultureRow details={details as AgricultureDetails} task={task} />
-          ) : type === 'Sanidad' && details ? (
-            <ExpandedSanidadRow details={details as SanidadDetails} task={task} />
-          ) : (type === 'Estructura2' || type === 'Ganaderia' || type === 'FINANZAS') && details ? (
-            <ExpandedGenericRow details={details as GenericDetails} task={task} />
-          ) : (
-            <ExpandedRowDetails
-              task={task}
-              type={type}
-              responsible={responsible}
-              date={date}
-              dateColor={dateColor}
-              checked={checked}
-            />
-          )}
-        </>
+        <ExpandedRowContent
+          type={type}
+          task={task}
+          details={details}
+          responsible={responsible}
+          date={date}
+          dateColor={dateColor}
+          checked={checked}
+        />
       )}
     </>
   );

@@ -1,62 +1,37 @@
-import { useState, useMemo, useEffect } from 'react';
 import { useTaskContext } from '../hooks/useTaskContext';
 import { useUIContext } from '../hooks/useUIContext';
+import { useFilteredTasks } from '../hooks/useFilteredTasks';
+import { usePagination } from '../hooks/usePagination';
+import { useExpandableRow } from '../hooks/useExpandableRow';
 import { AppHeader } from './layout/AppHeader';
 import { TabBar } from './navigation/TabBar';
 import { TaskTable } from './table';
-import { TabType } from '../types/ui.types';
 
-// Simulated logged-in user
-const CURRENT_USER = 'Martin Perez';
+const ITEMS_PER_PAGE = 6;
 
 function FieldData() {
-  const { pendingTasks, completedTasks, toggleTaskStatus } = useTaskContext();
+  const { toggleTaskStatus } = useTaskContext();
   const { activeTab } = useUIContext();
-  const [currentPage, setCurrentPage] = useState(0);
-  const [expandedRow, setExpandedRow] = useState<number | null>(null);
-  const itemsPerPage = 6;
+  const { filteredPendingTasks, filteredCompletedTasks } = useFilteredTasks();
+  const { expandedRow, handleExpandToggle } = useExpandableRow();
 
-  // Reset pagination when tab changes
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [activeTab]);
+  const pendingPagination = usePagination(filteredPendingTasks, ITEMS_PER_PAGE, {
+    resetDeps: [activeTab],
+  });
 
-  // Filter tasks based on active tab
-  const filteredPendingTasks = useMemo(() => {
-    if (activeTab === TabType.USER) {
-      return pendingTasks.filter(task => task.responsible === CURRENT_USER);
-    }
-    return pendingTasks;
-  }, [pendingTasks, activeTab]);
+  const completedPagination = usePagination(filteredCompletedTasks, ITEMS_PER_PAGE, {
+    resetDeps: [activeTab],
+  });
 
-  const filteredCompletedTasks = useMemo(() => {
-    if (activeTab === TabType.USER) {
-      return completedTasks.filter(task => task.responsible === CURRENT_USER);
-    }
-    return completedTasks;
-  }, [completedTasks, activeTab]);
+  const getPaginationProps = (pagination: typeof pendingPagination) => {
+    if (pagination.totalPages <= 1) return undefined;
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedCompletedTasks = filteredCompletedTasks.slice(startIndex, endIndex);
-
-  const hasPrevious = currentPage > 0;
-  const hasNext = endIndex < filteredCompletedTasks.length;
-
-  const handlePrevious = () => {
-    if (hasPrevious) {
-      setCurrentPage(prev => prev - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (hasNext) {
-      setCurrentPage(prev => prev + 1);
-    }
-  };
-
-  const handleExpandToggle = (taskId: number) => {
-    setExpandedRow(prev => prev === taskId ? null : taskId);
+    return {
+      onPrevious: pagination.handlePrevious,
+      onNext: pagination.handleNext,
+      hasPrevious: pagination.hasPrevious,
+      hasNext: pagination.hasNext,
+    };
   };
 
   return (
@@ -73,24 +48,20 @@ function FieldData() {
 
           <TaskTable
             variant="pending"
-            tasks={filteredPendingTasks}
+            tasks={pendingPagination.paginatedItems}
             expandedRow={expandedRow}
             onExpandToggle={handleExpandToggle}
             onTaskToggle={toggleTaskStatus}
+            pagination={getPaginationProps(pendingPagination)}
           />
 
           <TaskTable
             variant="completed"
-            tasks={paginatedCompletedTasks}
+            tasks={completedPagination.paginatedItems}
             expandedRow={expandedRow}
             onExpandToggle={handleExpandToggle}
             onTaskToggle={toggleTaskStatus}
-            pagination={{
-              onPrevious: handlePrevious,
-              onNext: handleNext,
-              hasPrevious,
-              hasNext,
-            }}
+            pagination={getPaginationProps(completedPagination)}
           />
         </div>
       </div>

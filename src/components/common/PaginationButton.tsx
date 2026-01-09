@@ -17,9 +17,9 @@ export function PaginationButton({
   label,
   direction
 }: PaginationButtonProps) {
-  const textColor = direction === 'next'
-    ? THEME.colors.text.primary
-    : THEME.colors.text.secondaryMuted;
+  const textColor = disabled
+    ? THEME.colors.text.secondaryMuted
+    : THEME.colors.text.primary;
 
   return (
     <button

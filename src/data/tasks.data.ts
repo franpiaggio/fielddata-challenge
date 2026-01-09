@@ -4,7 +4,7 @@ import { COLORS } from '../constants/colors.constants';
 export const INITIAL_PENDING_TASKS: Task[] = [
   {
     id: 1,
-    type: "Estructura2",
+    type: "estructura",
     task: "Arreglar el alambre entre la Tapera y La Taba",
     date: "Hoy",
     responsible: "Martin Perez",
@@ -20,7 +20,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
   },
   {
     id: 2,
-    type: "Sanidad",
+    type: "sanidad",
     task: "Vacunación de aftosa de las vaquillonas",
     date: "Mañana",
     responsible: "Angela Paez",
@@ -44,7 +44,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
   },
   {
     id: 3,
-    type: "Agricultura",
+    type: "agricultura",
     task: "Siembra de soja en La Tapera, La Taba y Frisia",
     date: "28 de Nov",
     responsible: "Martin Perez",
@@ -73,7 +73,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
   },
   {
     id: 4,
-    type: "Agricultura",
+    type: "agricultura",
     task: "Pulverización de la Victoria con Glifosato",
     date: "28 de Nov",
     responsible: "Martin Perez",
@@ -99,7 +99,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
   },
   {
     id: 5,
-    type: "FINANZAS",
+    type: "finanzas",
     task: "Pagar segunda cuota a Agro365",
     date: "1 de Dic",
     responsible: "Lucia del Rio",
@@ -115,7 +115,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
   },
   {
     id: 6,
-    type: "Ganaderia",
+    type: "ganaderia",
     task: "Mover novillos de la Victoria a el Triunfo",
     date: "3 de Dic",
     responsible: "Martin Perez",
@@ -135,7 +135,7 @@ export const INITIAL_PENDING_TASKS: Task[] = [
 export const INITIAL_COMPLETED_TASKS: Task[] = [
   {
     id: 7,
-    type: "Sanidad",
+    type: "sanidad",
     task: "Vacuna de aftosa para las vaquillonas del lote 7",
     date: "15 de Nov",
     responsible: "Martin Perez",
@@ -159,7 +159,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 8,
-    type: "Ganaderia",
+    type: "ganaderia",
     task: "Mover los toros de el Intruso a el Ajeno",
     date: "14 de Nov",
     responsible: "Angela Paez",
@@ -176,7 +176,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 9,
-    type: "Ganaderia",
+    type: "ganaderia",
     task: "Venta de 200 novillos del feedlot",
     date: "2 de Nov",
     responsible: "Martin Perez",
@@ -192,7 +192,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 10,
-    type: "Agricultura",
+    type: "agricultura",
     task: "Siembra de maíz en el Mudo y Freddy",
     date: "28 de Oct",
     responsible: "Martin Perez",
@@ -220,7 +220,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 11,
-    type: "FINANZAS",
+    type: "finanzas",
     task: "Pagar primera cuota a Agro365",
     date: "18 de Oct",
     responsible: "Lucia del Rio",
@@ -236,7 +236,7 @@ export const INITIAL_COMPLETED_TASKS: Task[] = [
   },
   {
     id: 12,
-    type: "Estructura2",
+    type: "estructura",
     task: "Arreglar el molino roto en los corrales",
     date: "13 de Oct",
     responsible: "Martin Perez",
