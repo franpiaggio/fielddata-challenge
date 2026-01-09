@@ -16,7 +16,7 @@ export function TablePagination({
       <button
         onClick={onLoadMore}
         className="font-semibold text-sm hover:underline transition-colors"
-        style={{ color: THEME.colors.primary }}
+        style={{ color: THEME.colors.primary as any }}
       >
         Cargar más
       </button>

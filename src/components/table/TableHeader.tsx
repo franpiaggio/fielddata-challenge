@@ -5,7 +5,7 @@ interface TableHeaderProps {
   count: number;
 }
 
-export function TableHeader({ count }: TableHeaderProps) {
+export function TableHeader({ count: _ }: TableHeaderProps) {
   const { t } = useTranslation();
 
   return (
