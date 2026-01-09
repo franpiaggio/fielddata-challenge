@@ -1,6 +1,5 @@
 import { THEME } from '../../constants/theme.constants';
-
-export type FilterStatus = 'all' | 'pending' | 'completed';
+import type { FilterStatus } from '../../hooks/useTaskFilters';
 
 interface FilterBarProps {
   selectedStatus: FilterStatus;

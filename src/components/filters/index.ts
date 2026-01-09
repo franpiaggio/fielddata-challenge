@@ -1,1 +1,2 @@
-export { FilterBar, type FilterStatus } from './FilterBar';
+export { FilterBar } from './FilterBar';
+export type { FilterStatus } from '../../hooks/useTaskFilters';

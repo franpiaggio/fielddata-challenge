@@ -1,14 +1,11 @@
 import type { TaskType, AgricultureDetails, SanidadDetails, GenericDetails } from '../../types/task.types';
 import { IMAGES } from '../../constants/images.constants';
 import { COLORS } from '../../constants/colors.constants';
-import { THEME } from '../../constants/theme.constants';
 import { Checkbox } from '../form/Checkbox';
 import { TaskTypeBadge } from '../badge/TaskTypeBadge';
 import { TextCell } from '../common';
-import { ExpandedRowDetails } from './ExpandedRowDetails';
-import { ExpandedAgricultureRow } from './ExpandedAgricultureRow';
-import { ExpandedSanidadRow } from './ExpandedSanidadRow';
-import { ExpandedGenericRow } from './ExpandedGenericRow';
+import { ChevronIcon } from '../icons';
+import { ExpandedRowContent } from './ExpandedRowContent';
 
 interface TableRowProps {
   checked?: boolean;
@@ -101,45 +98,24 @@ export function TableRow({
 
         <div className="w-6 flex-shrink-0 flex items-center justify-center">
           {taskId !== undefined && (
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-            >
-              <path
-                d="M4 6L8 10L12 6"
-                stroke={THEME.colors.text.secondary}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ChevronIcon
+              direction={isExpanded ? 'up' : 'down'}
+              className="transition-transform"
+            />
           )}
         </div>
       </div>
 
       {isExpanded && (
-        <>
-          {type === 'Agricultura' && details ? (
-            <ExpandedAgricultureRow details={details as AgricultureDetails} task={task} />
-          ) : type === 'Sanidad' && details ? (
-            <ExpandedSanidadRow details={details as SanidadDetails} task={task} />
-          ) : (type === 'Estructura' || type === 'Ganadería' || type === 'Finanzas') && details ? (
-            <ExpandedGenericRow details={details as GenericDetails} task={task} />
-          ) : (
-            <ExpandedRowDetails
-              task={task}
-              type={type}
-              responsible={responsible}
-              date={date}
-              dateColor={dateColor}
-              checked={checked}
-            />
-          )}
-        </>
+        <ExpandedRowContent
+          type={type}
+          task={task}
+          details={details}
+          responsible={responsible}
+          date={date}
+          dateColor={dateColor}
+          checked={checked}
+        />
       )}
     </>
   );
