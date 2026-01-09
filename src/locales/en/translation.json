@@ -1,0 +1,22 @@
+{
+  "tasks": {
+    "allTasks": "All Tasks",
+    "myTasks": "My Tasks",
+    "pending": "PENDING",
+    "completed": "COMPLETED",
+    "task": "TASK",
+    "date": "DATE",
+    "responsible": "RESPONSIBLE",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "taskTypes": {
+    "structure": "Structure",
+    "agriculture": "Agriculture",
+    "health": "Health",
+    "livestock": "Livestock",
+    "finance": "Finance"
+  }
+}

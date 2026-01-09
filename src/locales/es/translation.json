@@ -1,0 +1,22 @@
+{
+  "tasks": {
+    "allTasks": "Todas Tareas",
+    "myTasks": "Mis Tareas",
+    "pending": "PENDIENTES",
+    "completed": "COMPLETADOS",
+    "task": "TAREA",
+    "date": "FECHA",
+    "responsible": "RESPONSABLE",
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "taskTypes": {
+    "structure": "Estructura",
+    "agriculture": "Agricultura",
+    "health": "Sanidad",
+    "livestock": "Ganaderia",
+    "finance": "Finanzas"
+  }
+}

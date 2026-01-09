@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  :root {
+    @apply antialiased;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply m-0 min-w-[320px] min-h-screen;
+  }
+
+  #root {
+    @apply w-full min-h-screen;
+  }
+}
