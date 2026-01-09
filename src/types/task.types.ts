@@ -7,7 +7,7 @@ export interface AgricultureDetails {
     name: string;
     genetics: string;
   };
-  density: number; // k/ha
+  density: number;
   spacing: number;
   contractor: string;
   fields: Array<{
@@ -52,12 +52,11 @@ export interface GenericDetails {
 
 export interface Task {
   id: number;
-  type: TaskType;  // Changed from 'tipo'
-  task: string;    // Changed from 'tarea'
-  date: string;    // Changed from 'fecha'
-  responsible: string;  // Changed from 'responsable'
-  dateColor: string;    // Changed from 'fechaColor'
+  type: TaskType;
+  task: string;
+  date: string;
+  responsible: string;
+  dateColor: string;
   checked: boolean;
-  // Optional task-specific details (can be AgricultureDetails, SanidadDetails, GenericDetails, or other types in the future)
   details?: AgricultureDetails | SanidadDetails | GenericDetails;
 }

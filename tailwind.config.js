@@ -18,11 +18,11 @@ export default {
           bg: '#eef2f6',
         },
         pending: {
-          bg: '#fff9e3',
+          bg: '#fef6e7',
           text: '#ad8a00',
         },
         completed: {
-          bg: 'rgb(0 128 42 / 0.15)',
+          bg: '#e8f5e9',
           text: '#00802a',
         },
         taskType: {

@@ -19,19 +19,15 @@ export function TaskProvider({ children }: { children: ReactNode }) {
   const [completedTasks, setCompletedTasks] = useState<Task[]>(INITIAL_COMPLETED_TASKS);
 
   const toggleTaskStatus = (taskId: number) => {
-    // Find task in pending
     const pendingTask = pendingTasks.find(t => t.id === taskId);
     if (pendingTask) {
-      // Move to completed
       setPendingTasks(prev => prev.filter(t => t.id !== taskId));
       setCompletedTasks(prev => [...prev, { ...pendingTask, checked: true }]);
       return;
     }
 
-    // Find task in completed
     const completedTask = completedTasks.find(t => t.id === taskId);
     if (completedTask) {
-      // Move to pending
       setCompletedTasks(prev => prev.filter(t => t.id !== taskId));
       setPendingTasks(prev => [...prev, { ...completedTask, checked: false }]);
     }

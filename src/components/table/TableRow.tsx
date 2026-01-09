@@ -38,7 +38,6 @@ export function TableRow({
   details
 }: TableRowProps) {
   const handleRowClick = (e: React.MouseEvent) => {
-    // No expandir si se hace clic en checkbox, badge o acciones
     const target = e.target as HTMLElement;
     if (
       target.closest('input[type="checkbox"]') ||
@@ -62,7 +61,6 @@ export function TableRow({
         onClick={handleRowClick}
         style={{ cursor: taskId !== undefined ? 'pointer' : 'default' }}
       >
-        {/* Left colored bar only on expanded row */}
         {isExpanded && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0095FF]" />}
         <div className="flex items-center gap-3">
           <div onClick={(e) => e.stopPropagation()}>

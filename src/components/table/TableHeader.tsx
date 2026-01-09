@@ -10,7 +10,7 @@ interface TableHeaderProps {
 export function TableHeader({ variant, count }: TableHeaderProps) {
   const { t } = useTranslation();
 
-  const bgColor = variant === 'pending' ? 'bg-pending-bg' : 'bg-completed-bg';
+  const bgColor = variant === 'pending' ? 'bg-[#fef6e7]' : 'bg-[#e8f5e9]';
 
   return (
     <div className={`${bgColor} h-10 flex items-center gap-2.5 pl-4 sm:pl-5 pr-2.5 rounded-t-lg min-w-[768px]`}>
