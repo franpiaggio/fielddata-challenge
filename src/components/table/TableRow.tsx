@@ -55,21 +55,21 @@ export function TableRow({
   return (
     <>
       <div
-        className={`flex gap-4 items-center min-h-16 pl-4 sm:pl-5 pr-2.5 border-b border-gray-100 transition-colors relative ${
+        className={`flex items-center min-h-16 pl-4 sm:pl-5 pr-2.5 border-b border-gray-100 transition-colors relative ${
           isExpanded ? 'bg-[#f8f9fa]' : 'bg-white'
         }`}
         onClick={handleRowClick}
         style={{ cursor: taskId !== undefined ? 'pointer' : 'default' }}
       >
         {isExpanded && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0095FF]" />}
-        <div className="flex items-center gap-3">
+        <div className="w-[200px] flex-shrink-0 flex items-center gap-3">
           <div onClick={(e) => e.stopPropagation()}>
             <Checkbox checked={checked} onChange={onCheckChange} />
           </div>
           <TaskTypeBadge type={type} />
         </div>
 
-        <div className="flex-1 min-w-0 max-w-[200px] sm:max-w-none">
+        <div className="flex-1 min-w-0 pl-4">
           <TextCell variant="primary" className="truncate">{task}</TextCell>
         </div>
 

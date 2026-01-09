@@ -4,6 +4,7 @@ import { useUIContext } from '../hooks/useUIContext';
 import { AppHeader } from './layout/AppHeader';
 import { TabBar } from './navigation/TabBar';
 import { TaskTable } from './table';
+import { TabType } from '../types/ui.types';
 
 // Simulated logged-in user
 const CURRENT_USER = 'Martin Perez';
@@ -22,14 +23,14 @@ function FieldData() {
 
   // Filter tasks based on active tab
   const filteredPendingTasks = useMemo(() => {
-    if (activeTab === 'mis') {
+    if (activeTab === TabType.USER) {
       return pendingTasks.filter(task => task.responsible === CURRENT_USER);
     }
     return pendingTasks;
   }, [pendingTasks, activeTab]);
 
   const filteredCompletedTasks = useMemo(() => {
-    if (activeTab === 'mis') {
+    if (activeTab === TabType.USER) {
       return completedTasks.filter(task => task.responsible === CURRENT_USER);
     }
     return completedTasks;
