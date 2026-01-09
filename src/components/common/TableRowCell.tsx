@@ -1,4 +1,4 @@
-import { THEME, TABLE_COLUMN_WIDTHS } from '../../constants/theme.constants';
+import { TABLE_COLUMN_WIDTHS } from '../../constants/theme.constants';
 import { TextCell } from './TextCell';
 
 interface TableRowCellProps {
