@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTaskContext } from '../hooks/useTaskContext';
 import { useUIContext } from '../hooks/useUIContext';
 import { useFilteredTasks } from '../hooks/useFilteredTasks';
@@ -23,16 +24,39 @@ function FieldData() {
     resetDeps: [activeTab],
   });
 
-  const getPaginationProps = (pagination: typeof pendingPagination) => {
-    if (pagination.totalPages <= 1) return undefined;
+  const pendingPaginationProps = useMemo(() => {
+    if (pendingPagination.totalPages <= 1) return undefined;
 
     return {
-      onPrevious: pagination.handlePrevious,
-      onNext: pagination.handleNext,
-      hasPrevious: pagination.hasPrevious,
-      hasNext: pagination.hasNext,
+      onPrevious: pendingPagination.handlePrevious,
+      onNext: pendingPagination.handleNext,
+      hasPrevious: pendingPagination.hasPrevious,
+      hasNext: pendingPagination.hasNext,
     };
-  };
+  }, [
+    pendingPagination.totalPages,
+    pendingPagination.handlePrevious,
+    pendingPagination.handleNext,
+    pendingPagination.hasPrevious,
+    pendingPagination.hasNext,
+  ]);
+
+  const completedPaginationProps = useMemo(() => {
+    if (completedPagination.totalPages <= 1) return undefined;
+
+    return {
+      onPrevious: completedPagination.handlePrevious,
+      onNext: completedPagination.handleNext,
+      hasPrevious: completedPagination.hasPrevious,
+      hasNext: completedPagination.hasNext,
+    };
+  }, [
+    completedPagination.totalPages,
+    completedPagination.handlePrevious,
+    completedPagination.handleNext,
+    completedPagination.hasPrevious,
+    completedPagination.hasNext,
+  ]);
 
   return (
     <div className="bg-white min-h-screen w-full">
@@ -52,7 +76,7 @@ function FieldData() {
             expandedRow={expandedRow}
             onExpandToggle={handleExpandToggle}
             onTaskToggle={toggleTaskStatus}
-            pagination={getPaginationProps(pendingPagination)}
+            pagination={pendingPaginationProps}
           />
 
           <TaskTable
@@ -61,7 +85,7 @@ function FieldData() {
             expandedRow={expandedRow}
             onExpandToggle={handleExpandToggle}
             onTaskToggle={toggleTaskStatus}
-            pagination={getPaginationProps(completedPagination)}
+            pagination={completedPaginationProps}
           />
         </div>
       </div>

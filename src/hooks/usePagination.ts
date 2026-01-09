@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 
 interface UsePaginationOptions {
   resetDeps?: unknown[];
@@ -14,17 +14,20 @@ interface UsePaginationReturn<T> {
   handleNext: () => void;
 }
 
+const EMPTY_DEPS: unknown[] = [];
+
 export function usePagination<T>(
   items: T[],
   itemsPerPage: number,
   options?: UsePaginationOptions
 ): UsePaginationReturn<T> {
   const [currentPage, setCurrentPage] = useState(0);
+  const resetDeps = options?.resetDeps ?? EMPTY_DEPS;
 
   // Reset pagination when dependencies change
   useEffect(() => {
     setCurrentPage(0);
-  }, options?.resetDeps ?? []);
+  }, resetDeps);
 
   const { paginatedItems, totalPages, hasPrevious, hasNext } = useMemo(() => {
     const startIndex = currentPage * itemsPerPage;
@@ -39,17 +42,13 @@ export function usePagination<T>(
     };
   }, [items, currentPage, itemsPerPage]);
 
-  const handlePrevious = () => {
-    if (hasPrevious) {
-      setCurrentPage(prev => prev - 1);
-    }
-  };
+  const handlePrevious = useCallback(() => {
+    setCurrentPage(prev => (prev > 0 ? prev - 1 : prev));
+  }, []);
 
-  const handleNext = () => {
-    if (hasNext) {
-      setCurrentPage(prev => prev + 1);
-    }
-  };
+  const handleNext = useCallback(() => {
+    setCurrentPage(prev => prev + 1);
+  }, []);
 
   return {
     paginatedItems,
