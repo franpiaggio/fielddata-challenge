@@ -1,10 +1,10 @@
 import type { TaskType, AgricultureDetails, SanidadDetails, GenericDetails } from '../../types/task.types';
 import { IMAGES } from '../../constants/images.constants';
 import { COLORS } from '../../constants/colors.constants';
-import { THEME, TABLE_COLUMN_WIDTHS } from '../../constants/theme.constants';
+import { THEME } from '../../constants/theme.constants';
 import { Checkbox } from '../form/Checkbox';
 import { TaskTypeBadge } from '../badge/TaskTypeBadge';
-import { TextCell, TableRowCell } from '../common';
+import { TextCell } from '../common';
 import { ExpandedRowDetails } from './ExpandedRowDetails';
 import { ExpandedAgricultureRow } from './ExpandedAgricultureRow';
 import { ExpandedSanidadRow } from './ExpandedSanidadRow';
@@ -55,7 +55,7 @@ export function TableRow({
   return (
     <>
       <div
-        className={`flex gap-4 items-center h-16 pl-4 sm:pl-5 pr-2.5 border-b border-gray-100 transition-colors min-w-[768px] relative ${
+        className={`flex gap-4 items-center min-h-16 pl-4 sm:pl-5 pr-2.5 border-b border-gray-100 transition-colors relative ${
           isExpanded ? 'bg-[#f8f9fa]' : 'bg-white'
         }`}
         onClick={handleRowClick}
@@ -69,18 +69,18 @@ export function TableRow({
           <TaskTypeBadge type={type} />
         </div>
 
-        <div className="flex-1">
-          <TextCell variant="primary">{task}</TextCell>
+        <div className="flex-1 min-w-0 max-w-[200px] sm:max-w-none">
+          <TextCell variant="primary" className="truncate">{task}</TextCell>
         </div>
 
-        <div className="w-32 flex items-center gap-1.5">
+        <div className="hidden sm:flex w-32 items-center gap-1.5">
           <img src={IMAGES.icons.calendar} alt="calendar" className="w-6 h-6" />
           <p className="font-normal text-sm leading-5" style={{ color: dateColor }}>
             {date}
           </p>
         </div>
 
-        <div className="w-32">
+        <div className="hidden sm:block w-32">
           <TextCell variant="secondary">{responsible}</TextCell>
         </div>
 
@@ -109,11 +109,11 @@ export function TableRow({
       {isExpanded && (
         <>
           {type === 'Agricultura' && details ? (
-            <ExpandedAgricultureRow details={details as AgricultureDetails} />
+            <ExpandedAgricultureRow details={details as AgricultureDetails} task={task} />
           ) : type === 'Sanidad' && details ? (
-            <ExpandedSanidadRow details={details as SanidadDetails} />
+            <ExpandedSanidadRow details={details as SanidadDetails} task={task} />
           ) : (type === 'Estructura2' || type === 'Ganaderia' || type === 'FINANZAS') && details ? (
-            <ExpandedGenericRow details={details as GenericDetails} />
+            <ExpandedGenericRow details={details as GenericDetails} task={task} />
           ) : (
             <ExpandedRowDetails
               task={task}

@@ -19,7 +19,7 @@ export function ExpandedRowDetails({
   checked
 }: ExpandedRowDetailsProps) {
   return (
-    <div className="bg-[#f8f9fa] border-t border-neutral-light pl-4 sm:pl-5 pr-2.5 py-4 min-w-[768px]">
+    <div className="bg-[#f8f9fa] border-t border-neutral-light pl-4 sm:pl-5 pr-2.5 py-4">
       <div className="max-w-[900px]">
         <div className="mb-3">
           <h4 className="font-semibold text-sm mb-2" style={{ color: THEME.colors.text.primary }}>
